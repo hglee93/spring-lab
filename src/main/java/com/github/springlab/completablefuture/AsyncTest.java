@@ -22,12 +22,7 @@ public class AsyncTest {
         log.info(s);
     }
 
-    public static void main(String[] args) {
-        AsyncTest asyncTest = new AsyncTest();
-        asyncTest.asyncTest();
-    }
-
-    public CompletableFuture asyncTest() {
+    public CompletableFuture asyncApplyTest() {
         //TODO
         task = CompletableFuture.supplyAsync(() -> {
             log("Start");
@@ -44,6 +39,20 @@ public class AsyncTest {
             log("apply3 : " + result);
             return "apply3 OK";
         });
+        return task;
+    }
+
+    public CompletableFuture asyncThenAcceptTest() {
+
+        task = CompletableFuture.supplyAsync(() -> {
+            log("Start");
+            sleep(5000);
+            log("end");
+            return "OK";
+        }).thenAccept(result -> log("accept1 : " + result))
+        .thenAccept(result -> log("accept2 : " + result))
+        .thenAccept(result -> log("accept3 : " + result));
+
         return task;
     }
 

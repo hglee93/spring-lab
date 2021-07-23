@@ -12,7 +12,15 @@ class AsyncTestTest {
 
     @Test
     void thenApply_테스트() {
-
+        AsyncTest asyncTest = new AsyncTest();
+        CompletableFuture applyTask = asyncTest.asyncApplyTest();
+        applyTask.join();
     }
 
+    @Test
+    void thenAccept_테스트() {
+        AsyncTest asyncTest = new AsyncTest();
+        CompletableFuture acceptTask = asyncTest.asyncThenAcceptTest();
+        acceptTask.join();
+    }
 }
